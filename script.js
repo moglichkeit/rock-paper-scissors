@@ -7,7 +7,7 @@ function getComputerChoice() {
     if (computerChoice === 0) {
         return 'rock';
     } else if (computerChoice === 1) {
-        return 'papper';
+        return 'paper';
     } else {
         return 'scissors';
     }
@@ -19,19 +19,19 @@ function playRound (playerSelection, computerSelection) {
         return 0;
     }
     else if (playerSelection === 'rock') {
-        if (computerSelection === 'papper') {
+        if (computerSelection === 'paper') {
             console.log('You lose! Paper beats Rock');
             return -1;
         } else {
             console.log('You win! Rock beats Scissors');
             return 1;
         }
-    } else if (playerSelection === 'papper') {
+    } else if (playerSelection === 'paper') {
         if (computerSelection === 'scissors') {
-            console.log('You lose! Scissors beats Papper');
+            console.log('You lose! Scissors beats paper');
             return -1;
         } else {
-            console.log('You win! Papper beats Rock');
+            console.log('You win! Paper beats Rock');
             return 1;
         }
     } else {
@@ -39,7 +39,7 @@ function playRound (playerSelection, computerSelection) {
             console.log('You lose! Rock beats Scissors');
             return -1;
         } else {
-            console.log('You win! Scissors beats Papper');
+            console.log('You win! Scissors beats Paper');
             return 1;
         }
     }
