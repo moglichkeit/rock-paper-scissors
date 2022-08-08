@@ -1,2 +1,2 @@
 # rock-papper-scissors
-Okay, just another training project. The game "rock-paper-scissors", which works in the console, but this is for now. I'll be back to make the user interface. For launch type "game();" in to console;
+Okay, just another training project. The game "rock-paper-scissors" with simple UI. Later, a beautiful design will be made, but only when I learn how to make it.
