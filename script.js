@@ -45,32 +45,55 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
-function game () {
-    let humanScore = 0;
-    let computerScore = 0;
+function playAgain () {
+    const restart = document.querySelector('#restart');
+    restart.style.cssText = "visibility: visible";
+    if (humanScore === 5) {
+        score.textContent = `You win ${humanScore}:${computerScore}!`;
+    } else {
+        score.textContent = `You lose ${humanScore}:${computerScore}!`;
+    }
 
-    const btn = document.querySelectorAll('.controls');
-
-    btn.forEach((button) => {
-        button.addEventListener('click', () => {
-            resultRound = playRound(button.id, getComputerChoice());
-            if (resultRound === 1) {
-                humanScore++;
-                score.textContent = `You ${humanScore}:${computerScore} Computer`;
-            } else if (resultRound === -1) {
-                computerScore++;
-                score.textContent = `You ${humanScore}:${computerScore} Computer`;
-            }
-            if (humanScore === 5 || computerScore === 5)
-            {
-                humanScore = 0;
-                computerScore = 0;
-                score.textContent = `You ${humanScore}:${computerScore} Computer`;
-                return;
-            }
-        })
-    })
+    restart.addEventListener('click', () => {
+        humanScore = 0;
+        computerScore = 0;
+        score.textContent = `You ${humanScore}:${computerScore} Computer`;
+        output.textContent = 'New game.';
+        restart.style.cssText = "visibility: hidden";
+        return;
+    });
 }
-const output = document.querySelector('.output');
+
+let humanScore = 0;
+let computerScore = 0;
+let roundResult = 0;
+
+const btn = document.querySelectorAll('.controls');
 const score = document.querySelector('.score');
-game();
+const output = document.querySelector('.output');
+
+btn.forEach( (button) => {
+    button.addEventListener('click', () => {
+        if (humanScore < 5 && computerScore < 5) {
+            
+            roundResult = playRound(button.id, getComputerChoice());
+            if (roundResult === 1) {
+                humanScore++;
+                if (humanScore === 5) {
+                    playAgain();
+                } else {
+                score.textContent = `You ${humanScore}:${computerScore} Computer`;
+                }
+            } else if (roundResult === -1) {
+                computerScore++;
+                if (computerScore === 5) {
+                    playAgain();
+                } else {
+                score.textContent = `You ${humanScore}:${computerScore} Computer`;
+                }
+            }
+
+        } else {
+        }
+    });
+});
